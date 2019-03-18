@@ -23,7 +23,7 @@
         <div id="display-response">결과</div>
     </div>
     <script>
-        function send() {
+        async function send() {
             let num1 = $("#num1").val().trim();
             let num2 = $("#num2").val().trim();
             let operate = $("#operate").val().trim();
@@ -31,18 +31,17 @@
                 $('#display-response').html('입력하세요.');
                 return;
             }
-            $.ajax({
-                url:"/cal/" + num1 + "/"+num2+"/" + operate,
-                type:"get",
-                sync:true,
-                success: function(response){
-                    $('#display-response').html(JSON.stringify(response));
-                },
-                error: function (err) {
-                    $('#display-response').html(JSON.stringify(err));
-                }
-            });
+            try {
+                let response = await $.get("/cal/" + num1 + "/"+num2+"/" + operate);
+                $('#display-response').html(JSON.stringify(response));
+            }catch (e) {
+                $('#display-response').html(JSON.stringify(e));
+            }finally {
+                $('#display-response').html($('#display-response').html()+'<br>항상실행');
+            }
         }
+
+
 
     </script>
 </body>
