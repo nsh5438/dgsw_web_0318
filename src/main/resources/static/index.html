@@ -19,7 +19,7 @@
             <option value="multi">곱하기</option>
             <option value="division">나누기</option>
         </select>
-        <button onclick="send()">전송</button>
+        <button onclick="send()">연산</button>
         <div id="display-response">결과</div>
     </div>
     <script>
@@ -34,10 +34,10 @@
             try {
                 let response = await $.get("/cal/" + num1 + "/"+num2+"/" + operate);
                 $('#display-response').html(JSON.stringify(response));
-            }catch (e) {
-                $('#display-response').html(JSON.stringify(e));
+            }catch (err) {
+                $('#display-response').html(JSON.stringify(err));
             }finally {
-                $('#display-response').html($('#display-response').html()+'<br>항상실행');
+                $('#display-response').html("결과<br>"+$('#display-response').html());
             }
         }
 

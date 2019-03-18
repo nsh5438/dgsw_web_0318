@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 public class CalServicein implements CalService {
 
     @Override
-    public int cal_result(int n1, int n2, String s) {
-        if (s.equals("plus")) {
-            return n1 + n2;
-        } else if (s.equals("minus")) {
-            return n1 - n2;
-        } else if (s.equals("multi")) {
-            return n1 * n2;
-        } else if (s.equals("division")) {
-            return n1 / n2;
+    public int cal_result(int num1, int num2, String operate) {
+        if (operate.equals("plus")) {
+            return num1 + num2;
+        } else if (operate.equals("minus")) {
+            return num1 - num2;
+        } else if (operate.equals("multi")) {
+            return num1 * num2;
+        } else if (operate.equals("division")) {
+            return num1 / num2;
         } else {
             return 0;
         }
